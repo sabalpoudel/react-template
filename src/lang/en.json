@@ -1,4 +1,25 @@
 {
   "simple": "A simple messages.",
-  "argument": "Hi, {name}!"
+  "argument": "Hi, {name}!",
+  "click_or_drag": "Click/Drag to upload",
+  "video_image_limit": "Video/Image should be less than {size}",
+  "img_upload_file_invalid_type": "File is of Invalid type",
+  "img_upload_file_too_large": "File should be less than {size}",
+  "img_upload_file_too_small": "File should be more than {size}",
+  "img_upload_too_many_files": "Can only select {count} files",
+  "img_upload_image_limit": "The image should be less than {size}",
+  "img_upload_video_limit": "The video should be less than {size}",
+  "required": "Required",
+  "invalid_url": "URL is invalid",
+  "invalid_value": "Invalid value",
+  "invalid_date": "Date is invalid",
+  "invalid_phone": "Phone is invalid",
+  "invalid_email": "Email is invalid",
+  "invalid_number": "Number is invalid",
+  "password_mismatch": "Password mismatch",
+  "please_type_in_katakana": "Please type in katakana",
+  "please_fix_above_errors": "Please fix above error(s)",
+  "future_date_not_allowed": "Future date is not allowed",
+  "past_date_not_allowed": "Past date is not allowed",
+  "weak_password": "Password needs: 1 lowercase, 1 uppercase, 1 number, minimum 8 characters."
 }

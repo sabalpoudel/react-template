@@ -1,4 +1,25 @@
 {
   "simple": "シンプルなメッセージ。",
-  "argument": "こんにちは、{name}さん！"
+  "argument": "こんにちは、{name}さん！",
+  "click_or_drag": "クリック/ドラッグしてアップロード",
+  "video_image_limit": "動画/画像は{size}未満である必要があります",
+  "img_upload_file_invalid_type": "ファイルが無効なタイプである",
+  "img_upload_file_too_large": "ファイルサイズは{size}未満である必要があります",
+  "img_upload_file_too_small": "ファイルサイズは{size}以上でなければなりません。",
+  "img_upload_too_many_files": "選択できるのは{count}個のファイルだけです",
+  "img_upload_image_limit": "画像は{size}未満である必要があります",
+  "img_upload_video_limit": "動画は{size}未満である必要があります",
+  "required": "必須",
+  "invalid_url": "URL が無効",
+  "invalid_value": "無効な値",
+  "invalid_number": "番号が無効",
+  "invalid_date": "日付が無効です",
+  "invalid_phone": "電話番号が無効",
+  "invalid_email": "電子メールが無効です",
+  "future_date_not_allowed": "未来の日付は不可",
+  "past_date_not_allowed": "過去の日付は許可されません",
+  "password_mismatch": "パスワードが一致しませんでした",
+  "please_type_in_katakana": "カタカナで入力してください。",
+  "please_fix_above_errors": "上記のエラーを修正してください。",
+  "weak_password": "パスワードが必要です。小文字1文字、大文字1文字、数字1文字、8文字以上。"
 }
