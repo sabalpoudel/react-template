@@ -1,6 +1,6 @@
-import { getLang } from "../_translations/utils/getLang";
+import { getLang } from "../lang/utils/getLang";
 import { checkIsLocal, extractFromCookies } from "../_utils";
-import { TService, getEndPoint } from "./endpoint";
+import { type TService, getEndPoint } from "./endpoint";
 
 type RequestOptions = RequestInit & {
   isAuth?: boolean;

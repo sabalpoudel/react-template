@@ -1,6 +1,6 @@
 import { getEndPoint } from "./endpoint";
-import { getLang } from "../_translations/utils/getLang";
-import { parseJSON, ParseJSONType, SnackBar } from "../_utils";
+import { getLang } from "../lang/utils/getLang";
+import { parseJSON, type ParseJSONType, SnackBar } from "../_utils";
 
 const parseErrFunc = (
   err: Error,

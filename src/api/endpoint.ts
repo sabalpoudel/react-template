@@ -1,4 +1,4 @@
-import { TLang } from "../_config/config";
+import { type TLang } from "../config/config";
 import { isDev as checkIsDev, checkIsLocal, isTestIp } from "../_utils";
 
 type TPorts = "3000" | "3007" | "3008" | "3009" | "3010" | "5000";
