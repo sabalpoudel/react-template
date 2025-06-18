@@ -1,5 +1,4 @@
-"use client";
-import { TUserCookie } from "../../api/_interface";
+import { type TUserCookie } from "../../api/interface";
 import { getUser } from "../userHelper";
 import { useEffect, useState } from "react";
 

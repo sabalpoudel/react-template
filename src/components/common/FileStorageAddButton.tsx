@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Fab } from "@mui/material";
-import { useTranslations } from "next-intl";
+import { useIntl } from "react-intl";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 import { ChooseFileComp } from "@components/bits/ChooseFileComp/ChooseFileComp";
@@ -16,7 +16,7 @@ type TProps = {
 
 export const FileStorageAddButton = (props: TProps) => {
   const { platformId, onAddFileSuccess } = props;
-  const t = useTranslations("Shared");
+  const { formatMessage } = useIntl();
 
   const [image, setImage] = useState<File[]>([]);
 
@@ -54,7 +54,7 @@ export const FileStorageAddButton = (props: TProps) => {
         ) : (
           <AddCircleIcon className="icon" />
         )}
-        <span>&nbsp;{t("add_files")}</span>
+        <span>&nbsp;{formatMessage({ id: "add_files" })}</span>
       </Fab>
     </ChooseFileComp>
   );

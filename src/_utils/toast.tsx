@@ -1,8 +1,8 @@
-import { ExternalToast, toast } from "sonner";
+import { type ExternalToast, toast } from "sonner";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 
-import { getLang } from "@translations/utils/getLang";
-import { toastTranslate } from "@translations/TranslationsToast";
+import { getLang } from "@lang/utils/getLang";
+import { toastTranslate } from "@lang/TranslationsToast";
 
 type TToast = ExternalToast & { message: string; doNotTranslate?: boolean };
 type TSnackBarType =

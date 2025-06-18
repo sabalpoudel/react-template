@@ -1,5 +1,4 @@
-import React from "react";
-import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+import SvgIcon, { type SvgIconProps } from "@mui/material/SvgIcon";
 
 export const SendSquare = (props: SvgIconProps) => {
   return (

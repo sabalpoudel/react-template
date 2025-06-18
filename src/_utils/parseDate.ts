@@ -1,5 +1,5 @@
 import { DEFAULT_LOCALE, TIMEZONES } from "../config/config";
-import { getLang } from "../_translations/utils/getLang";
+import { getLang } from "../lang/utils/getLang";
 import {
   dayNamesFullEN,
   dayNamesFullJP,

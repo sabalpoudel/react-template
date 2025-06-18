@@ -139,7 +139,7 @@ function findChangedValString<T extends { [key: string]: unknown }>(
   const changedVal: RTFindChangedValString = {};
   // Iterate through keys of newVal
   for (const key in newVal) {
-    if (newVal.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(newVal, key)) {
       const o = oldVal?.[key];
       const n = newVal[key];
 

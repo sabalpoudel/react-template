@@ -1,4 +1,4 @@
-import { TFileType } from "@utils/fileUtils";
+import { type TFileType } from "@utils/fileUtils";
 
 type TFileDetails = {
   url: string;

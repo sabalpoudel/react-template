@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useTranslations } from "next-intl";
-
+import { useState } from "react";
+import { useIntl } from "react-intl";
 import { Typography } from "@mui/material";
 
 import { ButtonComp } from "@components/bits/Button";
@@ -18,7 +17,11 @@ import { FileStorageFilter } from "../FileStorageFilter";
 import { TableConfig } from "@config/config";
 import { getFileType, SnackBar, useDebounce } from "@utils/index";
 import { useFetchFiles } from "@api/helpers/storage/useFetchFiles";
-import { TFetchFilesFilter, TFileRecord, TStorageFiles } from "@api/_interface";
+import type {
+  TFetchFilesFilter,
+  TFileRecord,
+  TStorageFiles,
+} from "@api/interface";
 
 const perPage = TableConfig.defaultPerPage;
 const maxFileCount = 5;
@@ -39,8 +42,7 @@ const defFilter: TFetchFilesFilter = {
 export const FileStorageModalContent = (props: TProps) => {
   const { onConfirm, storageFiles, setStorageFiles } = props;
 
-  const t = useTranslations("Shared");
-
+  const intl = useIntl();
   const [filter, setFilter] = useState(defFilter);
   const debouncedSearchQuery = useDebounce(filter.search_query) as string; // Debounce only the search_query
 
@@ -92,7 +94,10 @@ export const FileStorageModalContent = (props: TProps) => {
     }
 
     if (storageFiles.length === maxFileCount) {
-      const message = t("alert_max_x_select", { c: maxFileCount });
+      const message = intl.formatMessage(
+        { id: "alert_max_x_select" },
+        { c: maxFileCount }
+      );
       SnackBar({ message, doNotTranslate: true }, "warning");
       return;
     }
@@ -144,10 +149,18 @@ export const FileStorageModalContent = (props: TProps) => {
       <div>
         <Typography gutterBottom component="p" variant="caption">
           <Typography gutterBottom variant="caption" color="primary">
-            {t("x_selected", { c: storageFiles.length })} &nbsp;
+            {intl.formatMessage(
+              { id: "x_selected" },
+              { c: storageFiles.length }
+            )}{" "}
+            &nbsp;
           </Typography>
           <Typography gutterBottom variant="caption" color="secondary">
-            {t("alert_max_x_select", { c: maxFileCount })} &nbsp;
+            {intl.formatMessage(
+              { id: "alert_max_x_select" },
+              { c: maxFileCount }
+            )}{" "}
+            &nbsp;
           </Typography>
         </Typography>
         <div className="fs-mc-btns">
@@ -157,7 +170,7 @@ export const FileStorageModalContent = (props: TProps) => {
             onClick={onConfirm}
             variant="contained"
           >
-            {t("confirm_selection")}
+            {intl.formatMessage({ id: "confirm_selection" })}
           </ButtonComp>
         </div>
       </div>

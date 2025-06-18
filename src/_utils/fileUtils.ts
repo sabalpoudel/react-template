@@ -1,7 +1,7 @@
 // import { MIMEType } from "util";
 import { isDev } from "./myFunc";
 import { elpString } from "./stringHelpers";
-import { TFileDetails } from "@api/_interface";
+import { type TFileDetails } from "@api/interface";
 
 type TCusFileType =
   | "csv"

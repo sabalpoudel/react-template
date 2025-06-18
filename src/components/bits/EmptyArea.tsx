@@ -1,81 +1,80 @@
-// "use client";
-// import { Typography } from "@mui/material";
-// import { useTranslations } from "next-intl";
-// import { useRouter } from "next/navigation";
+import { useIntl } from "react-intl";
+import { Typography } from "@mui/material";
+import { useNavigate } from "react-router";
 
-// import { ButtonComp } from "./Button";
-// import { EmptyAreaIcon } from "../_icons";
-// import { EmptyAreaWrapper } from "./EmptyAreaWrapper";
+import { ButtonComp } from "./Button";
+import { EmptyAreaIcon } from "../_icons";
+import { EmptyAreaWrapper } from "./EmptyAreaWrapper";
 
-// type EmptyAreaProps = {
-//   title?: string;
-//   goBack?: boolean;
-//   subtitle?: string;
-//   iconWidth?: string;
-//   className?: string;
-//   doNotTranslate?: boolean;
-// };
+type EmptyAreaProps = {
+  title?: string;
+  goBack?: boolean;
+  subtitle?: string;
+  iconWidth?: string;
+  className?: string;
+  doNotTranslate?: boolean;
+};
 
-// export const EmptyArea: React.FC<EmptyAreaProps> = ({
-//   goBack,
-//   className = "",
-//   iconWidth = "400px",
-//   doNotTranslate = false,
-//   title = "empty_area_title",
-//   subtitle = "empty_area_subtitle",
-// }: EmptyAreaProps) => {
-//   const router = useRouter();
-//   const e = useTranslations("Empty");
+export const EmptyArea: React.FC<EmptyAreaProps> = ({
+  goBack,
+  className = "",
+  iconWidth = "400px",
+  doNotTranslate = false,
+  title = "empty_area_title",
+  subtitle = "empty_area_subtitle",
+}: EmptyAreaProps) => {
+  const navigate = useNavigate();
+  const intl = useIntl();
 
-//   const t = doNotTranslate ? title : e(title);
-//   const st = doNotTranslate ? subtitle : e(subtitle);
+  const t = doNotTranslate ? title : intl.formatMessage({ id: title });
+  const st = doNotTranslate ? subtitle : intl.formatMessage({ id: subtitle });
 
-//   const continueExploring = () => {
-//     if (window) {
-//       const length = window?.history?.length || 1;
-//       if (length > 1) {
-//         router.back();
-//         return;
-//       }
-//     }
-//     router.push("/dashboard");
-//   };
+  const continueExploring = () => {
+    if (window) {
+      const length = window?.history?.length || 1;
+      if (length > 1) {
+        navigate(-1);
+        return;
+      }
+    }
+    navigate("/dashboard");
+  };
 
-//   return (
-//     <EmptyAreaWrapper className={className + " eaw"} iconWidth={iconWidth}>
-//       <div className="eaw-container">
-//         <Typography
-//           variant="h6"
-//           gutterBottom
-//           component="h2"
-//           className="eaw-container-h2"
-//         >
-//           {t}
-//         </Typography>
-//         {st && (
-//           <Typography
-//             gutterBottom
-//             component="h3"
-//             color="textSecondary"
-//             className="eaw-container-h3"
-//           >
-//             {st}
-//           </Typography>
-//         )}
-//         <EmptyAreaIcon className="eaw-container-icon" />
-//         {goBack && (
-//           <div className="eaw-container-goBack">
-//             <br />
-//             <ButtonComp
-//               variant="outlined"
-//               onClick={continueExploring}
-//               className="eaw-container-goBack-btn"
-//             >
-//               {e("continue_exploring")}
-//             </ButtonComp>
-//           </div>
-//         )}
-//       </div>
-//     </EmptyAreaWrapper>
-//   );
-// };
+  return (
+    <EmptyAreaWrapper className={className + " eaw"} iconWidth={iconWidth}>
+      <div className="eaw-container">
+        <Typography
+          variant="h6"
+          gutterBottom
+          component="h2"
+          className="eaw-container-h2"
+        >
+          {t}
+        </Typography>
+        {st && (
+          <Typography
+            gutterBottom
+            component="h3"
+            color="textSecondary"
+            className="eaw-container-h3"
+          >
+            {st}
+          </Typography>
+        )}
+        <EmptyAreaIcon className="eaw-container-icon" />
+        {goBack && (
+          <div className="eaw-container-goBack">
+            <br />
+            <ButtonComp
+              variant="outlined"
+              onClick={continueExploring}
+              className="eaw-container-goBack-btn"
+            >
+              {intl.formatMessage({ id: "continue_exploring" })}
+            </ButtonComp>
+          </div>
+        )}
+      </div>
+    </EmptyAreaWrapper>
+  );
+};

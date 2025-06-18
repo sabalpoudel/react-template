@@ -3,6 +3,7 @@ import { FormattedMessage, IntlProvider } from "react-intl";
 import { ClientThemeProvider } from "./components/bits/MUI/ClientThemeProvider";
 import { Provider } from "react-redux";
 import { reduxStore } from "./store/store";
+import { BrowserRouter } from "react-router";
 
 type TranslationMessages = Record<string, string>;
 
@@ -109,7 +110,9 @@ function LocalizationWrapper() {
     >
       <Provider store={reduxStore}>
         <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
-          <App locale={locale} onLocaleChange={handleLocaleChange} />
+          <BrowserRouter>
+            <App locale={locale} onLocaleChange={handleLocaleChange} />
+          </BrowserRouter>
         </ClientThemeProvider>
       </Provider>
     </IntlProvider>

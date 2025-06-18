@@ -1,5 +1,4 @@
-"use client";
-import { useEffect, useState, RefObject } from "react";
+import { useEffect, useState, type RefObject } from "react";
 
 /**
  * Custom hook to determine if a given element is currently visible on the screen.

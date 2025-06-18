@@ -1,10 +1,9 @@
-import React from "react";
-import { useTranslations } from "use-intl";
+import { useIntl } from "react-intl";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { InputField } from "@components/bits/InputField";
 import { SelectField } from "@components/bits/SelectField";
-import { TFetchFilesFilter } from "@api/_interface/TStorage";
+import { type TFetchFilesFilter } from "@api/interface/TStorage";
 
 const FILE_TYPE = [
   { value: "all", label: "all" },
@@ -32,15 +31,16 @@ type TProps = {
   changeFilter: (val: string, key: keyof TFetchFilesFilter) => void;
 };
 export const FileStorageFilter = (props: TProps) => {
+  const { formatMessage } = useIntl();
   const { filter, changeFilter } = props;
-  const t = useTranslations("Shared");
+
   return (
     <div className="fsw-filter">
       <InputField
         size="small"
         variant="outlined"
-        label={t("search")}
-        placeholder={t("search")}
+        label={formatMessage({ id: "search" })}
+        placeholder={formatMessage({ id: "search" })}
         value={filter.search_query}
         className="fsw-filter-input"
         endAdornment={<SearchIcon fontSize="small" />}
@@ -48,18 +48,24 @@ export const FileStorageFilter = (props: TProps) => {
       />
       <SelectField
         size="small"
-        label={t("type")}
+        label={formatMessage({ id: "type" })}
         value={filter.file_type}
         className="fsw-filter-select"
-        options={FILE_TYPE.map((i) => ({ ...i, label: t(i.label) }))}
+        options={FILE_TYPE.map((i) => ({
+          ...i,
+          label: formatMessage({ id: i.label }),
+        }))}
         onChange={(e) => changeFilter(e?.target?.value as string, "file_type")}
       />
       <SelectField
         size="small"
-        label={t("sort")}
+        label={formatMessage({ id: "sort" })}
         value={filter.sort_value}
         className="fsw-filter-select"
-        options={FILE_SORT.map((i) => ({ ...i, label: t(i.label) }))}
+        options={FILE_SORT.map((i) => ({
+          ...i,
+          label: formatMessage({ id: i.label }),
+        }))}
         onChange={(e) => changeFilter(e?.target?.value as string, "sort_value")}
       />
     </div>

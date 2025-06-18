@@ -1,6 +1,5 @@
-"use client";
 import styled from "@emotion/styled";
-import { Theme } from "@mui/material";
+import { type Theme } from "@mui/material";
 
 const FileRelatedModalsWrapper = styled.div<{ theme?: Theme }>`
   gap: 2rem;

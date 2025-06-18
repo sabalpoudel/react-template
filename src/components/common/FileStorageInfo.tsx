@@ -1,9 +1,8 @@
-import React from "react";
 import { Typography } from "@mui/material";
-import { useTranslations } from "next-intl";
 
+import { useIntl } from "react-intl";
 import { Spinner } from "@components/bits/Spinner";
-import { TStorageDetailRecord } from "@api/_interface";
+import { type TStorageDetailRecord } from "@api/interface";
 
 type TProps = {
   loading: boolean;
@@ -12,7 +11,7 @@ type TProps = {
 };
 export const FileStorageInfo = (props: TProps) => {
   const { loading, data } = props;
-  const t = useTranslations("Shared");
+  const { formatMessage } = useIntl();
 
   if (loading)
     return (
@@ -21,9 +20,9 @@ export const FileStorageInfo = (props: TProps) => {
   else if (data)
     return (
       <Typography variant="h6" color="primary">
-        {t(data?.plan || "free")}
+        {formatMessage({ id: data?.plan || "free" })}
         &nbsp;
-        {t("plan")}
+        {formatMessage({ id: "plan" })}
         {data?.used_storage && data?.total_storage && (
           <Typography component="span" color="textPrimary">
             {` (${data?.used_storage} / ${data?.total_storage})  `}

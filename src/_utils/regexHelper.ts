@@ -14,11 +14,11 @@ export const strongPasswordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,30}$/;
 export const upperCaseRegex = /^(?=.*[A-Z])/;
 export const lowerCaseRegex = /^(?=.*[a-z])/;
 export const oneNumberRegex = /^(?=.*\d)/;
-export const oneSymbolRegex = /^(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])/;
+export const oneSymbolRegex = /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])/;
 export const isLinkRegex =
   /(?:https?|ftp):\/\/[\w-]+(\.[\w-]+)+(?:[\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?/g;
 export const isUrlRegex =
-  /^(?:https?|ftp):\/\/[\w.-]+(?:\.[\w-]+)+[\w._~:/?#[\]@!\$&'()*+,;=]+/gim;
+  /^(?:https?|ftp):\/\/[\w.-]+(?:\.[\w-]+)+[\w._~:/?#[\]@!$&'()*+,;=]+/gim;
 // /^(?:https?|ftp):\/\/[\w.-]+(?:\.[\w-]+)+[\w-._~:/?#[\]@!\$&'()*+,;=]+/gim;
 
 // 3000 - 303f: Japanese-style punctuation

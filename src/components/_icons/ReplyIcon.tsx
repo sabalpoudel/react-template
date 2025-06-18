@@ -1,5 +1,3 @@
-import React from "react";
-
 export const ReplyIcon = ({ className = "", fill = "#01aef3", ...props }) => {
   return (
     <svg

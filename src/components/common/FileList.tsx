@@ -1,5 +1,5 @@
+import { useIntl } from "react-intl";
 import { useSelector } from "react-redux";
-import { useTranslations } from "next-intl";
 import React, { useEffect, useState } from "react";
 
 import EditIcon from "@mui/icons-material/Edit";
@@ -12,7 +12,7 @@ import { InputField } from "@components/bits/InputField";
 
 import { downloadFile } from "@utils/fileUtils";
 import { Spinner } from "@components/bits/Spinner";
-import { TFileRecord, TPlatform } from "@api/_interface";
+import type { TFileRecord, TPlatform } from "@api/interface";
 import { userSelector } from "@store/authSlice/selectors";
 
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -111,7 +111,7 @@ const ACT_BTN = [
 ];
 
 const SingleFileComp = (props: TSingleFileComp) => {
-  const t = useTranslations("Shared");
+  const { formatMessage } = useIntl();
 
   const {
     fileId,
@@ -203,7 +203,9 @@ const SingleFileComp = (props: TSingleFileComp) => {
           // imgProps={{ placeholder: "blur", type: "comp", ...imgProps }}
         />
       </div>
-      <div className="fsw-list-single-type">{t(detail?.file_type)}</div>
+      <div className="fsw-list-single-type">
+        {formatMessage({ id: detail?.file_type })}
+      </div>
       <InputField
         size="small"
         autoFocus
@@ -235,14 +237,14 @@ const SingleFileComp = (props: TSingleFileComp) => {
                       disabled={
                         !name || name === detail.file_original_name || loading
                       }
-                      title={t("confirm")}
+                      title={formatMessage({ id: "confirm" })}
                     >
                       <CheckIcon fontSize="small" />
                     </IconButton>
                     <IconButton
                       size="small"
                       color="secondary"
-                      title={t("cancel")}
+                      title={formatMessage({ id: "cancel" })}
                       onClick={handleEditCancel}
                     >
                       <ClearIcon fontSize="small" />
@@ -253,7 +255,7 @@ const SingleFileComp = (props: TSingleFileComp) => {
                 <IconButton
                   size="small"
                   color="primary"
-                  title={t("edit")}
+                  title={formatMessage({ id: "edit" })}
                   onClick={() => setEditable(true)}
                 >
                   <EditIcon fontSize="small" />
@@ -277,7 +279,7 @@ const SingleFileComp = (props: TSingleFileComp) => {
               return (
                 <IconButton
                   key={i.id}
-                  title={t(i.title)}
+                  title={formatMessage({ id: i.title })}
                   color={i.color as any}
                   onClick={handleActionOnClick(i.id)}
                 >

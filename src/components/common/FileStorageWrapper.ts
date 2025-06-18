@@ -1,6 +1,5 @@
-"use client";
 import styled from "@emotion/styled";
-import { Theme } from "@mui/material";
+import { type Theme } from "@mui/material";
 import { breakpoint } from "@styles/mui/theme";
 
 export const FileStorageModalContentWrapper = styled.div<{ theme?: Theme }>`
