@@ -1,6 +1,5 @@
 import { isJsonParsable } from "./stringHelpers";
 
-/** Function to encode data to Base64 */
 const encodeToBase64 = (data: unknown, stringify = false): string => {
   const processedData = stringify ? JSON.stringify(data) : data;
 
@@ -10,13 +9,15 @@ const encodeToBase64 = (data: unknown, stringify = false): string => {
     );
   }
 
-  return Buffer.from(processedData).toString("base64");
+  const bytes = new TextEncoder().encode(processedData);
+  return btoa(String.fromCharCode(...bytes));
 };
 
-/** Function to decode a Base64 string */
 const decodeFromBase64 = (encodedData: string, parse = false): unknown => {
   try {
-    const decodedData = Buffer.from(encodedData, "base64").toString("utf-8");
+    const binaryString = atob(encodedData);
+    const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
+    const decodedData = new TextDecoder().decode(bytes);
 
     if (parse && isJsonParsable(decodedData)) {
       return JSON.parse(decodedData);
