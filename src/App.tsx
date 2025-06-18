@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { FormattedMessage, IntlProvider } from "react-intl";
 import { ClientThemeProvider } from "./components/bits/MUI/ClientThemeProvider";
+import { Provider } from "react-redux";
+import { reduxStore } from "./store/store";
 
 type TranslationMessages = Record<string, string>;
 
@@ -105,9 +107,11 @@ function LocalizationWrapper() {
         }
       }}
     >
-      <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
-        <App locale={locale} onLocaleChange={handleLocaleChange} />
-      </ClientThemeProvider>
+      <Provider store={reduxStore}>
+        <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
+          <App locale={locale} onLocaleChange={handleLocaleChange} />
+        </ClientThemeProvider>
+      </Provider>
     </IntlProvider>
   );
 }
