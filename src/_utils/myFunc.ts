@@ -10,10 +10,10 @@ const removeNull = (val: any) => {
   return val;
 };
 
-const isDev = process.env.NEXT_PUBLIC_ENV === "development";
-const isProd = process.env.NEXT_PUBLIC_ENV === "production";
-const isTestIp = process.env.NEXT_PUBLIC_ENV === "testing";
-const checkIsLocal = process.env.NEXT_PUBLIC_HIT_LOCAL_API === "true";
+const isDev = import.meta.env.VITE_PUBLIC_ENV === "development";
+const isProd = import.meta.env.VITE_PUBLIC_ENV === "production";
+const isTestIp = import.meta.env.VITE_PUBLIC_ENV === "testing";
+const checkIsLocal = import.meta.env.VITE_PUBLIC_HIT_LOCAL_API === "true";
 
 const getKeyByValue = (object: any, value: any) => {
   return Object.keys(object).find((key) => object[key] === value);
