@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { DEFAULT_LOCALE } from "@config/config";
+import { DEFAULT_LOCALE } from "@/config/config";
 import { redirect } from "@translations/routing";
 
 const validateToken = async () => {

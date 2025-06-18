@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, TIMEZONES } from "../_config/config";
+import { DEFAULT_LOCALE, TIMEZONES } from "../config/config";
 import { getLang } from "../_translations/utils/getLang";
 import {
   dayNamesFullEN,

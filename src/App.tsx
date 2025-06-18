@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { FormattedMessage, IntlProvider } from "react-intl";
+import { ClientThemeProvider } from "./components/bits/MUI/ClientThemeProvider";
 
 type TranslationMessages = Record<string, string>;
 
 const SUPPORTED_LOCALES = {
   ENGLISH: "en",
-  JAPANESE: "jp",
+  JAPANESE: "ja",
 } as const;
 
 type Locale = (typeof SUPPORTED_LOCALES)[keyof typeof SUPPORTED_LOCALES];
@@ -13,7 +14,9 @@ type Locale = (typeof SUPPORTED_LOCALES)[keyof typeof SUPPORTED_LOCALES];
 const DEFAULT_LOCALE = SUPPORTED_LOCALES.ENGLISH;
 
 function getInitialLocale(): Locale {
-  const browserLocale = navigator.language.split("-")[0];
+  const browserLocale =
+    localStorage.getItem("locale") || navigator.language.split("-")[0];
+
   return Object.values(SUPPORTED_LOCALES).includes(browserLocale as Locale)
     ? (browserLocale as Locale)
     : DEFAULT_LOCALE;
@@ -74,9 +77,10 @@ function LocalizationWrapper() {
   }, [locale]);
 
   const handleLocaleChange = (locale: Locale) => {
-    document.documentElement.lang = locale === "en" ? "en" : "ja";
+    document.documentElement.lang = locale;
 
     setLocale(locale);
+    localStorage.setItem("locale", locale);
   };
 
   if (loading) {
@@ -101,7 +105,9 @@ function LocalizationWrapper() {
         }
       }}
     >
-      <App locale={locale} onLocaleChange={handleLocaleChange} />
+      <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
+        <App locale={locale} onLocaleChange={handleLocaleChange} />
+      </ClientThemeProvider>
     </IntlProvider>
   );
 }
@@ -114,13 +120,13 @@ function App({ locale, onLocaleChange }) {
       <div style={{ textAlign: "center" }}>
         <select value={locale} onChange={(e) => onLocaleChange(e.target.value)}>
           <option value="en">en</option>
-          <option value="jp">jp</option>
+          <option value="ja">jp</option>
         </select>
       </div>
 
-      <FormattedMessage id="message.simple" />
+      <FormattedMessage id="simple" />
       <br />
-      <FormattedMessage id="message.argument" values={{ name: "John" }} />
+      <FormattedMessage id="argument" values={{ name: "John" }} />
     </div>
   );
 }

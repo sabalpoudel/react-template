@@ -2,7 +2,7 @@
 import { cookies, headers } from "next/headers";
 
 import { getCurrPage } from "./getCurrPage";
-import { DEFAULT_LOCALE } from "../_config/config";
+import { DEFAULT_LOCALE } from "../config/config";
 
 const getCurrLocale = async (): Promise<string> => {
   const cookieStore = await cookies();

@@ -3,7 +3,7 @@ import { jaJP, enUS } from "@mui/material/locale";
 import { createTheme, type Direction } from "@mui/material/styles";
 
 import { BREAKPOINTS } from "./constant";
-import type { TLang } from "../../_config/config";
+import type { TLang } from "../../config/config";
 import { darkPalette, lightPalette } from "./palette";
 
 export type customInitialProps = {
@@ -45,7 +45,7 @@ const cusTheme = {
 const getTheme = ({
   rtl = false,
   darkTheme = false,
-  lang = "jp",
+  lang = "ja",
 }: ThemeExtended) => {
   const palette = darkTheme ? darkPalette : lightPalette;
   const styles = {
@@ -54,7 +54,7 @@ const getTheme = ({
     dir: rtl ? "rtl" : "ltr",
     direction: rtl ? "rtl" : ("ltr" as Direction),
   };
-  return createTheme({ ...styles }, lang === "jp" ? jaJP : enUS); // TS_FIX_ME
+  return createTheme({ ...styles }, lang === "ja" ? jaJP : enUS); // TS_FIX_ME
 };
 
 export const breakpoint = (

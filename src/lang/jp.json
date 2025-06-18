@@ -1,4 +1,4 @@
 {
-  "message.simple": "シンプルなメッセージ。",
-  "message.argument": "こんにちは、{name}さん！"
+  "simple": "シンプルなメッセージ。",
+  "argument": "こんにちは、{name}さん！"
 }

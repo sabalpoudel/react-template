@@ -1,8 +1,8 @@
 const TabScreenSize = 768;
 
-const LOCALES = ["jp", "en"];
-const DEFAULT_LOCALE = "jp";
-type TLang = "jp" | "en";
+const LOCALES = ["ja", "en"];
+const DEFAULT_LOCALE = "ja";
+type TLang = "ja" | "en";
 
 const TableConfig = {
   defaultPerPage: 10,
