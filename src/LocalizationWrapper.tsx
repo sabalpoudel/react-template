@@ -1,31 +1,18 @@
-import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
 import { IntlProvider } from "react-intl";
 import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router";
 
+import {
+  type Locale,
+  DEFAULT_LOCALE,
+  SUPPORTED_LOCALES,
+  type TranslationMessages,
+} from "./config/config";
+import { localeSelector } from "./store/extraSlice/selectors";
+
 import App from "./App";
-import { reduxStore } from "./store/store";
 import { ClientThemeProvider } from "./components/bits/MUI/ClientThemeProvider";
-
-type TranslationMessages = Record<string, string>;
-
-const SUPPORTED_LOCALES = {
-  ENGLISH: "en",
-  JAPANESE: "ja",
-} as const;
-
-type Locale = (typeof SUPPORTED_LOCALES)[keyof typeof SUPPORTED_LOCALES];
-
-const DEFAULT_LOCALE = SUPPORTED_LOCALES.ENGLISH;
-
-function getInitialLocale(): Locale {
-  const browserLocale =
-    localStorage.getItem("locale") || navigator.language.split("-")[0];
-
-  return Object.values(SUPPORTED_LOCALES).includes(browserLocale as Locale)
-    ? (browserLocale as Locale)
-    : DEFAULT_LOCALE;
-}
 
 // Cache for loaded messages
 const messageCache: Partial<Record<Locale, TranslationMessages>> = {};
@@ -61,8 +48,9 @@ async function loadMessages(locale: Locale): Promise<TranslationMessages> {
 function LocalizationWrapper() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [locale, setLocale] = useState<Locale>(getInitialLocale);
   const [messages, setMessages] = useState<TranslationMessages | null>(null);
+
+  const locale = useSelector(localeSelector);
 
   useEffect(() => {
     setLoading(true);
@@ -80,13 +68,6 @@ function LocalizationWrapper() {
         setLoading(false);
       });
   }, [locale]);
-
-  const handleLocaleChange = (locale: Locale) => {
-    document.documentElement.lang = locale;
-
-    setLocale(locale);
-    localStorage.setItem("locale", locale);
-  };
 
   if (loading) {
     return <div>Loading translations...</div>;
@@ -110,13 +91,11 @@ function LocalizationWrapper() {
         }
       }}
     >
-      <Provider store={reduxStore}>
-        <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
-          <BrowserRouter>
-            <App locale={locale} onLocaleChange={handleLocaleChange} />
-          </BrowserRouter>
-        </ClientThemeProvider>
-      </Provider>
+      <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ClientThemeProvider>
     </IntlProvider>
   );
 }

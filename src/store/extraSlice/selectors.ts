@@ -10,3 +10,5 @@ export const rightModalTypeSelector = (state: ReduxState) =>
 
 export const fileRelatedModalSelector = (state: ReduxState) =>
   state.extra.fileRelatedModal;
+
+export const localeSelector = (state: ReduxState) => state.extra.locale;
