@@ -13,6 +13,7 @@ import { localeSelector } from "./store/extraSlice/selectors";
 
 import App from "./App";
 import { ClientThemeProvider } from "./components/bits/MUI/ClientThemeProvider";
+import { Toaster } from "sonner";
 
 // Cache for loaded messages
 const messageCache: Partial<Record<Locale, TranslationMessages>> = {};
@@ -94,6 +95,11 @@ function LocalizationWrapper() {
       <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
         <BrowserRouter>
           <App />
+          <Toaster
+            closeButton
+            position="top-right"
+            toastOptions={{ className: "my-toast" }}
+          />
         </BrowserRouter>
       </ClientThemeProvider>
     </IntlProvider>
