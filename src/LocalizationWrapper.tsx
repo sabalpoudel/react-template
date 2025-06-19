@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { useSelector } from "react-redux";
 import { IntlProvider } from "react-intl";
 import { useState, useEffect } from "react";
@@ -11,9 +12,7 @@ import {
 } from "./config/config";
 import { localeSelector } from "./store/extraSlice/selectors";
 
-import App from "./App";
 import { ClientThemeProvider } from "./components/bits/MUI/ClientThemeProvider";
-import { Toaster } from "sonner";
 
 // Cache for loaded messages
 const messageCache: Partial<Record<Locale, TranslationMessages>> = {};
@@ -46,7 +45,7 @@ async function loadMessages(locale: Locale): Promise<TranslationMessages> {
   }
 }
 
-function LocalizationWrapper() {
+function LocalizationWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [messages, setMessages] = useState<TranslationMessages | null>(null);
@@ -94,7 +93,7 @@ function LocalizationWrapper() {
     >
       <ClientThemeProvider locale={locale} className={"ClientThemeProvider"}>
         <BrowserRouter>
-          <App />
+          {children}
           <Toaster
             closeButton
             position="top-right"
