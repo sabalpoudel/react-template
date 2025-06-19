@@ -1,10 +1,14 @@
 import { Routes, Route } from "react-router";
+
 import { HomePage } from "./pages/Home";
+import { AppWrapper } from "./AppWrapper";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
+    <AppWrapper className="app-wrapper">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </AppWrapper>
   );
 }

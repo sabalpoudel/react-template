@@ -24,5 +24,5 @@ const BREAKPOINTS = {
   },
 };
 
-const MAX_WIDTH = "1500px";
+const MAX_WIDTH = "2048px";
 export { BREAKPOINTS, MAX_WIDTH };
